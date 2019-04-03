@@ -15,8 +15,8 @@
 ## hand keypoint labels in the dataset
 ![](img/hand_lm3d.png)
 
+## Installation
 * Clone this repo
-
 ```bash
 git clone https://github.com/mikeshihyaolin/dataset_parsing.git
 ```
