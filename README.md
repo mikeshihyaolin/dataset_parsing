@@ -10,10 +10,10 @@
 + opencv-python
 
 ## An example of the parsing results 
-![](img/demo＿.png)
+![](img/demo_.png)
 
 ## hand keypoint labels in the dataset
-![](img/hand_lm3d.png)
+![](img/hand_lm3d_.png)
 
 ## Installation
 * Clone this repo
