@@ -12,6 +12,9 @@
 ## An example of the parsing results 
 ![](img/demo.png)
 
+## hand keypoint labels
+![](img/hand_lm3d.png)
+
 * Clone this repo
 
 ```bash
