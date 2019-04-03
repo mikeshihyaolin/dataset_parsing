@@ -12,13 +12,26 @@
 ## An example of the parsing results 
 ![](img/demo.png)
 
-## hand keypoint labels
+## hand keypoint labels in the dataset
 ![](img/hand_lm3d.png)
 
 * Clone this repo
 
 ```bash
 git clone https://github.com/mikeshihyaolin/dataset_parsing.git
+```
+## Dataset
+http://www.rovit.ua.es/dataset/mhpdataset/
+
+## Quick Start
++ write 2D hand images
+```
+python save_hand_pose.py -i [input_file_path] -v [camera_veiw] -o [output_img_path]
+```
+
++ write 3D hand images
+```
+python save_hand_pose.py -i [input_file_path] -o [output_img_path]
 ```
 
 
