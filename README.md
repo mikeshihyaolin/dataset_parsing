@@ -13,7 +13,7 @@
 ![](img/demo.png)
 
 ## hand keypoint labels
-![](img/hand_lm3d.png)
+![](img/hand_lm3d.png=200x210)
 
 * Clone this repo
 
