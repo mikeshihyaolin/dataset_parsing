@@ -10,7 +10,7 @@
 + opencv-python
 
 ## An example of the parsing results 
-![](imgs/demo.png)
+![](img/demo.png)
 
 * Clone this repo
 
