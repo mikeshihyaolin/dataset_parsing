@@ -10,7 +10,7 @@
 + opencv-python
 
 ## An example of the parsing results 
-![](img/demo.png)
+![](img/demo＿.png)
 
 ## hand keypoint labels in the dataset
 ![](img/hand_lm3d.png)
