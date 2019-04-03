@@ -13,7 +13,7 @@
 ![](img/demo.png)
 
 ## hand keypoint labels in the dataset
-![](img/hand_lm3d_.png)
+![](img/hand_lm3d.png)
 
 ## Installation
 * Clone this repo
