@@ -12,14 +12,10 @@
 ## An example of the parsing results 
 ![](img/demo.png)
 
+[demo1](https://youtu.be/YEqsGvIn1tE)
 ## hand keypoint labels in the dataset
 ![](img/hand_lm3d.png)
 
-## Installation
-* Clone this repo
-```bash
-git clone https://github.com/mikeshihyaolin/dataset_parsing.git
-```
 ## Dataset
 http://www.rovit.ua.es/dataset/mhpdataset/
 
