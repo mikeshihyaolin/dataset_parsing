@@ -9,14 +9,14 @@
 + python3
 + opencv-python
 
+## Dataset
+http://www.rovit.ua.es/dataset/mhpdataset/
+
 ## some parsing results [[video 1](https://youtu.be/dgS_X_bqhpM)] [[video 2](https://youtu.be/2Mk39D_Zyuw)] [[video 3](https://youtu.be/QRbjeIfjeyc)]  [[video 4](https://youtu.be/YEqsGvIn1tE)]
 [![](img/demo.png)](https://youtu.be/YEqsGvIn1tE)
 
 ## hand keypoint labels in the dataset
 ![](img/hand_lm3d.png)
-
-## Dataset
-http://www.rovit.ua.es/dataset/mhpdataset/
 
 ## Quick Start
 + write 2D hand images
