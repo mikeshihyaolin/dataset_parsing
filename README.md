@@ -29,5 +29,9 @@ python save_hand_pose.py -i [input_file_path] -v [camera_veiw] -o [output_img_pa
 python save_hand_pose.py -i [input_file_path] -o [output_img_path]
 ```
 
++ crop hand 
+```
+python crop_hand.py -i [input_file_path] -v [camera_veiw] -o [output_img_path]
+```
 
 
