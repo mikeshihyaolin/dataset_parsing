@@ -19,6 +19,17 @@ http://www.rovit.ua.es/dataset/mhpdataset/
 ![](img/hand_lm3d.png)
 
 ## Quick Start
++ Data Pre-processing
+```
+python script_pre-processing.py -i [dataset_path] -o [output_path] 
+```
+```
+sh _bash4preprocessing.sh
+```
+
+
+
+## Usages of other scripts
 + write 2D hand images
 ```
 python save_hand_pose.py -i [input_file_path] -v [camera_veiw] -o [output_img_path]

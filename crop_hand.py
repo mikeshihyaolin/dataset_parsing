@@ -28,11 +28,13 @@ def reset(reset_path):
     else:
         makedirs(path)
 
-def crop_hand(input_file_path, camera_view, output_img_path):
+def crop_hand(input_file_path, camera_view, output_img_path, crop_width):
 
 	reset(output_img_path+"/"+camera_view+"/")
 	file_list= sorted(glob.glob(input_file_path+"*_bbox_"+camera_view+".txt"))
 	img_list = sorted(glob.glob(input_file_path+"*_webcam_"+camera_view+".jpg"))
+
+	crop_width = int(int(crop_width)/2)
 
 	for j, _ in enumerate(img_list):
 		bbox = []
@@ -46,11 +48,12 @@ def crop_hand(input_file_path, camera_view, output_img_path):
 		print(bbox)
 
 		# find the new bbox width
-		new_width = int(max(bbox[2]-bbox[0], bbox[3]-bbox[1])/2)
+		# new_width = int(max(bbox[2]-bbox[0], bbox[3]-bbox[1])/2)
+
 		center = [int((bbox[2]-bbox[0])/2+bbox[0]), int((bbox[3]-bbox[1])/2+bbox[1])]
 		print(center)
-		print(new_width)
-		new_bbox = [center[0]-new_width, center[1]-new_width, center[0]+new_width, center[1]+new_width]
+		# new_bbox = [center[0]-new_width, center[1]-new_width, center[0]+new_width, center[1]+new_width]
+		new_bbox = [center[0]-crop_width, center[1]-crop_width, center[0]+crop_width, center[1]+crop_width]
 		print(new_bbox)
 		print("-------------------")
 
@@ -69,9 +72,11 @@ if __name__=="__main__":
 	parser.add_argument("--input_file_path", "-i", type=str, default = None)
 	parser.add_argument("--camera_veiw", "-v", type=str, default = None)
 	parser.add_argument("--output_img_path", "-o", type=str, default= "")
+	parser.add_argument("--crop_width", "-cw", type=str, default= "384")
 	args = parser.parse_args()
 
 	print("input path: "+args.input_file_path)
 	print("output path: "+args.output_img_path)
+	print("crop width: "+args.crop_width)
 
-	crop_hand(args.input_file_path, args.camera_veiw, args.output_img_path)
+	crop_hand(args.input_file_path, args.camera_veiw, args.output_img_path, args.crop_width)
