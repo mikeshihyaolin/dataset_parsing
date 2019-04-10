@@ -18,8 +18,9 @@ http://www.rovit.ua.es/dataset/mhpdataset/
 [[video 1](https://youtu.be/dgS_X_bqhpM)] [[video 2](https://youtu.be/2Mk39D_Zyuw)] [[video 3](https://youtu.be/QRbjeIfjeyc)]  [[video 4](https://youtu.be/YEqsGvIn1tE)]
 
 
-## hand keypoint labels in the dataset
+## hand keypoint labels 
 ![](img/hand_lm3d.png)
+keypoint 0 and 1 are ignored in my new labels
 
 ## Processed data
 If you do not want to download the original dataset and run any of my scripts, just download the results I have processed. 
@@ -64,7 +65,6 @@ python pre-processing_.py -i [input_file_path] -o [output_file_path] -d [data_nu
 python load_keypoint_sample.py -i [input_hand_keypoint_pickle_file] 
 ``` 
 ```
--------
 ...
 frame 702
 x: [0, 0, 231, 193, 169, 208, 162, 134, 122, 205, 151, 150, 166, 207, 157, 124, 102, 209, 183, 165, 149]
