@@ -19,7 +19,7 @@ http://www.rovit.ua.es/dataset/mhpdataset/
 
 
 ## hand keypoint labels 
-![](img/hand_lm3d.png)
+![](img/hand_lm3d.png)<br/>
 keypoint 0 and 1 are ignored in my new labels
 
 ## Processed data
