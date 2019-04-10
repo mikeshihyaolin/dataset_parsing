@@ -12,13 +12,17 @@
 ## Dataset
 http://www.rovit.ua.es/dataset/mhpdataset/
 
-## Some parsing results [[video 1](https://youtu.be/dgS_X_bqhpM)] [[video 2](https://youtu.be/2Mk39D_Zyuw)] [[video 3](https://youtu.be/QRbjeIfjeyc)]  [[video 4](https://youtu.be/YEqsGvIn1tE)]
+## Visulazie the parsing results 
 [![](img/demo.png)](https://youtu.be/YEqsGvIn1tE)
++ Some video results
+[[video 1](https://youtu.be/dgS_X_bqhpM)] [[video 2](https://youtu.be/2Mk39D_Zyuw)] [[video 3](https://youtu.be/QRbjeIfjeyc)]  [[video 4](https://youtu.be/YEqsGvIn1tE)]
+
 
 ## hand keypoint labels in the dataset
 ![](img/hand_lm3d.png)
 
 ## Processed data
+If you do not want to download the original dataset and run any of my scripts, just download the results I have processed. 
 [cropped hand images (3.2 GB)](https://drive.google.com/uc?id=12GNRqZRtjQYu303uh9AlYMcJUsvg6XRT&export=download)<br/>
 [modified keypoint labels (4.2 MB)](https://drive.google.com/file/d/1yqwlv3IbG0syB1bj4gpZW9YSrdirp8uO/view?usp=sharing)<br/>
 [cropped hand images with keypoints (3.6GB)](https://drive.google.com/uc?id=1Xu9JhLEWuQWqnaxS1DlCGJEfyKexWg4-&export=download)<br/>
@@ -57,7 +61,37 @@ python pre-processing_.py -i [input_file_path] -o [output_file_path] -d [data_nu
 
 + load keypoints from the processed data
 ```
-python load_keypoint_sample.py -i [input_file_path] 
+python load_keypoint_sample.py -i [input_hand_keypoint_pickle_file] 
 ``` 
-![](img/load_keypoint.png)
+```
+-------
+...
+frame 702
+x: [0, 0, 231, 193, 169, 208, 162, 134, 122, 205, 151, 150, 166, 207, 157, 124, 102, 209, 183, 165, 149]
+y: [0, 0, 252, 258, 252, 221, 218, 229, 241, 199, 217, 240, 247, 181, 174, 173, 174, 169, 146, 135, 127]
+-------
+frame 703
+x: [0, 0, 225, 187, 172, 208, 164, 135, 121, 207, 158, 123, 107, 210, 160, 128, 106, 212, 187, 170, 152]
+y: [0, 0, 256, 256, 241, 227, 222, 230, 239, 204, 189, 197, 209, 185, 175, 173, 174, 172, 148, 137, 129]
+-------
+frame 704
+x: [0, 0, 222, 184, 166, 209, 167, 136, 121, 208, 162, 126, 108, 211, 163, 131, 108, 213, 185, 167, 149]
+y: [0, 0, 255, 256, 242, 224, 215, 221, 231, 201, 183, 188, 200, 183, 169, 167, 168, 172, 148, 137, 129]
+-------
+frame 705
+x: [0, 0, 224, 186, 177, 208, 163, 133, 119, 206, 165, 131, 106, 210, 158, 126, 105, 212, 185, 168, 151]
+y: [0, 0, 255, 253, 235, 228, 223, 230, 240, 204, 184, 179, 181, 184, 182, 186, 192, 171, 149, 138, 129]
+-------
+frame 706
+x: [0, 0, 221, 183, 174, 213, 174, 143, 124, 212, 169, 132, 111, 214, 166, 152, 151, 215, 187, 167, 148]
+y: [0, 0, 251, 245, 226, 220, 211, 215, 223, 196, 175, 176, 185, 177, 194, 216, 230, 164, 143, 136, 134]
+-------
+frame 707
+x: [0, 0, 255, 227, 210, 201, 154, 126, 107, 199, 149, 116, 95, 204, 160, 130, 110, 210, 178, 159, 141]
+y: [0, 0, 226, 241, 253, 196, 193, 198, 205, 178, 163, 162, 166, 164, 144, 140, 142, 155, 137, 132, 133]
+-------
+number of frames: 708
 
+```
+<!-- ![](img/load_keypoint.png)
+ -->
