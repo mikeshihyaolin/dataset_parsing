@@ -1,5 +1,4 @@
 # -*-coding:utf-8-*-
-# @file   save_hand_pose.py
 # @author Shih-Yao (Mike) Lin
 # @email  shihyaolin@tencent.com
 # @date   2019-04-08

@@ -1,5 +1,4 @@
 # -*-coding:utf-8-*-
-# @file   save_hand_pose.py
 # @author Shih-Yao (Mike) Lin
 # @email  shihyaolin@tencent.com
 # @date   2019-04-08
@@ -50,7 +49,7 @@ def crop_hand(input_file_path, output_file_path, dataset_num, camera_view, crop_
 
 	reset(output_file_path+"/data_"+dataset_num+"/"+camera_view+"/")
 	reset(output_file_path+"/rendered_data_"+dataset_num+"/"+camera_view+"/")
-	
+
 	file_list= sorted(glob.glob(input_file_path+"/data_"+dataset_num+"/*_bbox_"+camera_view+".txt"))
 	joint_list=sorted(glob.glob(input_file_path+"/data_"+dataset_num+"/*_jointsCam_"+camera_view+".txt"))
 	img_list = sorted(glob.glob(input_file_path+"/data_"+dataset_num+"/*_webcam_"+camera_view+".jpg"))
@@ -77,20 +76,29 @@ def crop_hand(input_file_path, output_file_path, dataset_num, camera_view, crop_
 
 		# 2. calculate the center of the bbox
 		center = [int((bbox[2]-bbox[0])/2+bbox[0]), int((bbox[3]-bbox[1])/2+bbox[1])]
-		print(center)
 
 		# 3. set the new bbox
 		new_bbox = [center[0]-crop_width, center[1]-crop_width, center[0]+crop_width, center[1]+crop_width]
-
+		
 		# 4. load original images and crop hands
 		if img_list[j] != None:
 			img = cv2.imread(img_list[j])
+			if new_bbox[0] <= 0:
+				new_bbox[0] = 0
+				new_bbox[1] = new_bbox[1] - new_bbox[0]
+			if new_bbox[1] <= 0:
+				new_bbox[1] = 0
+				new_bbox[2] = new_bbox[2] - new_bbox[1]
+
 			crop_img = img[new_bbox[0]:new_bbox[2],new_bbox[1]:new_bbox[3]]
+			# print(new_bbox)
+			# print(crop_img.shape)
 
 		name = img_list[j][len(input_file_path)+1:]
 		name = name.split("_")
 		out_path = str(output_file_path+"/data_"+dataset_num+"/"+camera_view+"/%04d_"%int(name[1][len(dataset_num)+1:])+".jpg")
 		print(out_path)
+		print("------------")
 		cv2.imwrite(out_path, crop_img)
 
 		# 5. record the bbox coordinate
@@ -129,9 +137,7 @@ def crop_hand(input_file_path, output_file_path, dataset_num, camera_view, crop_
 	out_name =  str(output_file_path+"/data_"+str(dataset_num)+"_"+str(camera_view)+"_bbox_origin.pkl")
 	with open(out_name, 'wb') as fp:
 		pickle.dump(bbox_origin, fp)
-	# with open (out_name, 'rb') as fp:
-	# 	data = pickle.load(fp)
-	# 	print(data)
+
 	out_name =  str(output_file_path+"/data_"+str(dataset_num)+"_"+str(camera_view)+"_hand_keypoints.pkl")
 	with open(out_name, 'wb') as fp:
 		pickle.dump(hand_keypoints, fp)
@@ -142,7 +148,7 @@ if __name__=="__main__":
 	parser.add_argument("--output_file_path", "-o", type=str, default = None)
 	parser.add_argument("--dataset_num", "-d", type=str, default = None)
 	parser.add_argument("--camera_veiw", "-v", type=str, default = None)
-	parser.add_argument("--crop_width",  "-cw", type=str, default= "384")
+	parser.add_argument("--crop_width",  "-cw", type=str, default= "368")
 	args = parser.parse_args()
 
 	print("input path: "+args.input_file_path)
