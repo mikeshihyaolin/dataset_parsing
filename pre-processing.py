@@ -65,7 +65,7 @@ def crop_hand(input_file_path, output_file_path, dataset_num, camera_view, crop_
 	for j, _ in enumerate(img_list):
 		print(file_list[j])
 		print(joint_list[j])
-		
+
 		# 1. load original bbox 
 		bbox = []
 		f = open(file_list[j],'r')
@@ -79,23 +79,42 @@ def crop_hand(input_file_path, output_file_path, dataset_num, camera_view, crop_
 
 		# 3. set the new bbox
 		new_bbox = [center[0]-crop_width, center[1]-crop_width, center[0]+crop_width, center[1]+crop_width]
-		
+
 		# 4. load original images and crop hands
 		if img_list[j] != None:
 			img = cv2.imread(img_list[j])
-			if new_bbox[0] <= 0:
+			if new_bbox[0] < 0:			
+				new_bbox[2] = new_bbox[2] - new_bbox[0]
 				new_bbox[0] = 0
-				new_bbox[1] = new_bbox[1] - new_bbox[0]
-			if new_bbox[1] <= 0:
+
+			if new_bbox[2] > 480:		
+				new_bbox[0] = new_bbox[0] - (new_bbox[2] - 480)
+				new_bbox[2] = 480
+
+
+			if new_bbox[1] < 0:
+				
+				new_bbox[3] = new_bbox[3] - new_bbox[1]
 				new_bbox[1] = 0
-				new_bbox[2] = new_bbox[2] - new_bbox[1]
+
+			if new_bbox[3] >= 640:
+				
+				new_bbox[1] = new_bbox[1] - (new_bbox[3] - 640)
+				new_bbox[3] = 640
+
+			name = img_list[j][len(input_file_path)+1:]
+			name = name.split("_")
+			if 26 == int(name[1][len(dataset_num)+1:]):
+				print(new_bbox[2]-new_bbox[0])
+				print(new_bbox[3]-new_bbox[1])
 
 			crop_img = img[new_bbox[0]:new_bbox[2],new_bbox[1]:new_bbox[3]]
-			# print(new_bbox)
-			# print(crop_img.shape)
+			
+			if 26 == int(name[1][len(dataset_num)+1:]):
+				print(new_bbox)
+				print(crop_img.shape)
 
-		name = img_list[j][len(input_file_path)+1:]
-		name = name.split("_")
+		
 		out_path = str(output_file_path+"/data_"+dataset_num+"/"+camera_view+"/%04d_"%int(name[1][len(dataset_num)+1:])+".jpg")
 		print(out_path)
 		print("------------")

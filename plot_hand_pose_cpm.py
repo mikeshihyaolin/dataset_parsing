@@ -15,7 +15,7 @@ def plot_2d_hand_pose(input_pkl_path, input_img_path):
 	
 	print(labels)
 
-	label = labels[1][0]
+	label = labels[10][0]
 	y = label[1]
 	x = label[2]
 	print(label)
@@ -26,13 +26,14 @@ def plot_2d_hand_pose(input_pkl_path, input_img_path):
 	for i, _ in enumerate(x):
 		cv2.circle(img, (x[i], y[i]), 5, (0, 0, 255), -1)
 
-	# cv2.imshow("img",img)
-	# cv2.waitKey()
+		cv2.imshow("img",img)
+		cv2.waitKey()
 		cv2.imwrite("/Users/shihyaolin/Desktop/joints_cpm/%03d.jpg"%i, img)
 
 
-path_pkl = "/Users/shihyaolin/Documents/data/lm3d_cpm/cpm/res_keypoint_1_3.pkl" 
-img_path = "/Users/shihyaolin/Documents/data/lm3d_processed_data/rendered_data_1/3/_0001_.jpg"
+path_pkl = "/Users/shihyaolin/Documents/data/lm3d_cpm/cpm/res_keypoint_1_4.pkl" 
+path_pkl = "/Users/shihyaolin//Documents/data/lm3d_processed_data/keypoints/data_1_2_hand_keypoints.pkl"
+img_path = "/Users/shihyaolin/Documents/data/lm3d_processed_data/crop_hand_w_keypoints/rendered_data_1/4/_0010_.jpg"
 # img_path = "/Users/shihyaolin/Documents/data/lm3d_cpm/cpm/res_1/1/00000.jpg"
 
 
