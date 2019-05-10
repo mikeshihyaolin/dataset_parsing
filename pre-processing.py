@@ -156,10 +156,14 @@ def crop_hand(input_file_path, output_file_path, dataset_num, camera_view, crop_
 	out_name =  str(output_file_path+"/data_"+str(dataset_num)+"_"+str(camera_view)+"_bbox_origin.pkl")
 	with open(out_name, 'wb') as fp:
 		pickle.dump(bbox_origin, fp)
+		print(out_name)
 
 	out_name =  str(output_file_path+"/data_"+str(dataset_num)+"_"+str(camera_view)+"_hand_keypoints.pkl")
 	with open(out_name, 'wb') as fp:
 		pickle.dump(hand_keypoints, fp)
+		print(out_name)
+
+	print("-----------------")
 
 if __name__=="__main__":
 	parser = argparse.ArgumentParser()
@@ -174,6 +178,6 @@ if __name__=="__main__":
 	print("output path: "+args.output_file_path)
 	print("dataset_num: "+args.dataset_num)
 	print("camera_veiw path: "+args.camera_veiw)
-	print("crop width: "+args.crop_width)
+	# print("crop width: "+args.crop_width)
 
 	crop_hand(args.input_file_path, args.output_file_path, args.dataset_num, args.camera_veiw, args.crop_width)

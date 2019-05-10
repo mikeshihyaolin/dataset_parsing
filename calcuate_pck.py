@@ -22,12 +22,6 @@ def calculate_pck(input_gt, input_p, output_pck):
 	with open (input_p, 'rb') as fp:
 		pre = pickle.load(fp)
 
-	# for i, f in enumerate(gt):
-		# print("frame " + str(f[0][0]))
-		# print("x: " + str(f[0][1]))
-		# print("y: " + str(f[0][2]))
-		# print("-------")
-
 	mean = 0
 	c = 0
 	dist_list = []
@@ -61,15 +55,12 @@ def calculate_pck(input_gt, input_p, output_pck):
 			2.1. calculate the distance for each joint
 			'''
 			avg_dst = 0
-			for j in range(21):
-				if j >1: # ignore the joint 0 and 1
-					dst = distance.euclidean([pre_x[j], pre_y[j]], [gt_x[j], gt_y[j]])
+			for j in range(1,21):
+				# if j >1: # ignore the joint 0 and 1
+				dst = distance.euclidean((pre_x[j], pre_y[j]), (gt_x[j], gt_y[j]))
+				avg_dst = avg_dst + dst
 
-					# dst = np.sqrt(np.sum((pre_x[j]- gt_x[j])**2) +  np.sum((pre_y[j]- gt_y[j])**2))
-					# dst = distance.euclidean([1, 0, 0], [0, 1, 0])
-					avg_dst = avg_dst + dst
-
-			avg_dst = int(avg_dst / 20	)	
+			avg_dst = avg_dst / 19
 			dist_list.append(avg_dst)	
 			print("dist: "+ str(avg_dst))
 			print("----------")
@@ -80,13 +71,62 @@ def calculate_pck(input_gt, input_p, output_pck):
 	print(dist_list)
 	print("avg. error: "+str(mean)+"pixels")
 	dist_list = np.array(dist_list)
-	# print(dist_list)
-	num_bins = 100
-	n, bins, patches = plt.hist(dist_list, num_bins, facecolor='blue')
-	plt.xlabel('error (pixel)')
-	plt.ylabel('number')
-	plt.title(r'Histogram of finger erros')
-	plt.savefig('HIST.png')
+	sorted_list = sorted(dist_list)
+
+
+	pck_at_10 = 364*0.1
+	pck_at_15 = 364*0.15
+	pck_at_20 = 364*0.2
+
+	print(sorted_list)
+	print(pck_at_10)
+	print(pck_at_20)
+	print(len(sorted_list))
+	c_pck_at_10 = 0
+	c_pck_at_15 = 0
+	c_pck_at_20 = 0
+
+	for j, val in enumerate(sorted_list):
+		if val > pck_at_10:
+			c_pck_at_10 = j
+			break
+	print("pck@10: "+str(c_pck_at_10/len(sorted_list)))
+
+	for j, val in enumerate(sorted_list):
+		if val > pck_at_15:
+			c_pck_at_15 = j
+			break
+	print("pck@15: "+str(c_pck_at_15/len(sorted_list)))
+	
+	for j, val in enumerate(sorted_list):
+		if val > pck_at_20:
+			c_pck_at_20 = j
+			break
+	print("pck@20: "+str(c_pck_at_20/len(sorted_list)))
+
+
+	# calculate PCK
+	PCK_list = []
+	c = 0
+	for j in np.arange(1, len(sorted_list), len(sorted_list)/100) :
+		PCK_list.append(sorted_list[c])
+		c = c +1
+
+	PCK_list = list(map(lambda i: (i), PCK_list))
+
+	ratio_list = np.arange(0,1, 0.01)
+	# print(ratio_list)
+	plt.rcParams.update({'font.size': 15})
+	plt.plot(PCK_list, ratio_list, '-b', label = "CPM", linewidth=3)
+	plt.grid()
+	plt.xlabel("threshold (px)")
+	plt.ylabel("PCK")
+ 
+	# plt.xlim(30, 34)
+	plt.ylim(0, 1)
+	plt.legend()
+	plt.savefig("/Users/shihyaolin/Desktop/img.png")
+
 
 	print("number of frames: "+str(len(pre)))
 
