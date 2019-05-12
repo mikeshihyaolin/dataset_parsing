@@ -7,7 +7,7 @@
 # @usage  python script_pre-processing.py -i [dataset_path] -o [output_path] 
 # @example  python script_pre-processing.py -i ../multiview_hand_pose_dataset_release/ -o ../data/  
 # @dataset  http://www.rovit.ua.es/dataset/mhpdataset/#explore
-
+#
 
 import subprocess
 import os
